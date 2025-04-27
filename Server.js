@@ -1,5 +1,5 @@
 require('dotenv').config({ path: './file.env' }); // Ensure the correct path to the environment file
-
+require('dotenv').config();
 console.log('MONGO_URI:', process.env.MONGO_URI);
 
 const express = require('express');
@@ -13,8 +13,7 @@ const driverRoutes = require('./Routes/DriverRoute');
 const riderRoutes = require('./Routes/RiderRoute');
 const approveDriverRoutes = require('./Routes/approveDriverRoute');
 const rejectDriverRoutes = require('./Routes/rejectDriverRoute'); // Import reject route
-
-
+const riderDeleteRoutes = require('./Routes/Riderdelete'); 
 
 
 // Debug route imports
@@ -31,6 +30,7 @@ app.use('/drivers', driverRoutes);  // For the driver routes
 app.use('/riders', riderRoutes);    // For the rider routes
 app.use('/approve', approveDriverRoutes); 
 app.use('/reject', rejectDriverRoutes); // Use the new reject route
+app.use('/rider', riderDeleteRoutes);
 // MongoDB connection
 const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/test';
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })

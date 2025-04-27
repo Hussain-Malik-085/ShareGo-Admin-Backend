@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const riderSchema = new mongoose.Schema(
+// Check if the model is already registered
+const Rider = mongoose.models.Rider || mongoose.model("Rider", new mongoose.Schema(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
@@ -9,6 +10,6 @@ const riderSchema = new mongoose.Schema(
     dob: { type: Date, required: true },
   },
   { timestamps: true }
-);
+));
 
-module.exports = mongoose.model("Rider", riderSchema);
+module.exports = Rider;
